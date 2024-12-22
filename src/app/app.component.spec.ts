@@ -1,10 +1,13 @@
-import { TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { RandomNumberService } from './services/random-number.service';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [AppComponent],
+      providers: [provideAnimations()],
     }).compileComponents();
   });
 
@@ -20,10 +23,4 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('random-number-generator');
   });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, random-number-generator');
-  });
 });

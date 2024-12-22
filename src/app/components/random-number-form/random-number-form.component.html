@@ -1,0 +1,30 @@
+<form [formGroup]="numberForm" (ngSubmit)="onSubmit()">
+    <mat-card class="example-card">
+        <mat-card-header class="example-card-header">
+            <mat-card-title class="example-card-title">Generate Random Number</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Favorite number</mat-label>
+                <mat-select formControlName="favoriteNumber">
+                    <mat-option *ngFor="let digit of [].constructor(10); let i = index" [value]="i">
+                        {{ i }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Number length</mat-label>
+                <input matInput type="number" formControlName="numberLength" />
+                @if (numberForm.controls['numberLength'].hasError('required')) {
+                <mat-error>You must enter a value</mat-error>
+                }
+                @else if (numberForm.controls['numberLength'].hasError('min')) {
+                <mat-error>Value must be at least 2</mat-error>
+                }
+            </mat-form-field>
+        </mat-card-content>
+        <mat-card-footer class="example-card-footer">
+            <button mat-raised-button color="primary" type="submit">Submit</button>
+        </mat-card-footer>
+    </mat-card>
+</form>
